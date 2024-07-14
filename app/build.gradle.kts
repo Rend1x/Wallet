@@ -78,6 +78,8 @@ dependencies {
     kapt(libs.hilt.android.compiler)
 
     implementation(project(":main"))
+    implementation(project(":core"))
+    implementation(project(":create"))
 }
 
 kapt {

@@ -76,6 +76,10 @@ dependencies {
     // MVI
     implementation(libs.orbit.core)
     implementation(libs.orbit.viewmodel)
+
+    implementation(project(":core"))
+
+    implementation(libs.accompanist.swiperefresh)
 }
 
 kapt {

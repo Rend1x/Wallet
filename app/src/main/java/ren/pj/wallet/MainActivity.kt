@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ren.pj.create.ui.CreateScreen
 import ren.pj.main.ui.MainScreen
 import ren.pj.wallet.ui.theme.WalletTheme
 
@@ -31,5 +32,6 @@ fun MyAppNavHost(
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable("main") { MainScreen(navController) }
+        composable("create") { CreateScreen(navController) }
     }
 }

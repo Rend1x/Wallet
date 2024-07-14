@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "Wallet"
 include(":app")
 include(":main")
+include(":core")
+include(":create")

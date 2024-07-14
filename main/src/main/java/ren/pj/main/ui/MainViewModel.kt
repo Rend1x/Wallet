@@ -10,7 +10,6 @@ import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
-import ren.pj.main.data.PurchaseEntity
 import ren.pj.main.data.PurchaseRepository
 import ren.pj.main.mvi.MainActions
 import ren.pj.main.mvi.MainSideEffect
@@ -21,10 +20,7 @@ class MainViewModel @Inject constructor(
     private val purchaseRepository: PurchaseRepository
 ) : ViewModel(), ContainerHost<MainState, MainSideEffect> {
 
-    override val container: Container<MainState, MainSideEffect> = container(
-        MainState(),
-
-    )
+    override val container: Container<MainState, MainSideEffect> = container(MainState())
 
     init {
         viewModelScope.launch {
@@ -40,26 +36,14 @@ class MainViewModel @Inject constructor(
 
     fun onEvent(event: MainActions) {
         when (event) {
-            is MainActions.AddPurchase -> addPurchase(event.purchase)
-            is MainActions.DeletePurchase -> deletePurchase(event.purchase)
+            is MainActions.DeletePurchase -> deletePurchase(event.purchaseId)
         }
     }
 
-    private fun deletePurchase(purchase: PurchaseEntity) {
+    private fun deletePurchase(purchaseId: Long) {
         viewModelScope.launch {
             try {
-                purchaseRepository.delete(purchase)
-                updatePurchases()
-            } catch (e: Exception) {
-                Log.e("MainViewModel", e.message.toString())
-            }
-        }
-    }
-
-    private fun addPurchase(purchase: PurchaseEntity) {
-        viewModelScope.launch {
-            try {
-                purchaseRepository.insert(purchase)
+                purchaseRepository.delete(purchaseId)
                 updatePurchases()
             } catch (e: Exception) {
                 Log.e("MainViewModel", e.message.toString())
