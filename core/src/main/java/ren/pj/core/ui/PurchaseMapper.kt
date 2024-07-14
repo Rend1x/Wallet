@@ -1,18 +1,18 @@
-package ren.pj.main.domain
+package ren.pj.core.ui
 
-import ren.pj.main.data.PurchaseEntity
+import ren.pj.core.data.PurchaseEntity
 
-// todo вынести в core
 object PurchaseMapper {
 
-    fun mapToPurchasesUi(purchases: List<PurchaseEntity>): List<PurchaseUi>{
+    fun mapToPurchasesUi(purchases: List<PurchaseEntity>): List<PurchaseUi> {
         return purchases.map { mapToPurchaseUi(it) }
     }
 
     private fun mapToPurchaseUi(purchaseEntity: PurchaseEntity): PurchaseUi {
         return PurchaseUi(
-            purchaseEntity.id.toInt(),
+            purchaseEntity.id,
             purchaseEntity.purchaseName,
+            purchaseEntity.category,
             "${purchaseEntity.amount.toBigDecimal()} ${purchaseEntity.currencyCode}"
         )
     }

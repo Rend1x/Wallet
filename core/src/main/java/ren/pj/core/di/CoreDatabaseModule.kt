@@ -1,4 +1,4 @@
-package ren.pj.main.di
+package ren.pj.core.di
 
 import android.content.Context
 import androidx.room.Room
@@ -7,13 +7,13 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ren.pj.main.data.AppDatabase
-import ren.pj.main.data.PurchaseDao
+import ren.pj.core.data.AppDatabase
+import ren.pj.core.data.PurchaseDao
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+class CoreDatabaseModule {
 
     @Provides
     @Singleton
