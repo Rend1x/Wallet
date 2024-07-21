@@ -11,6 +11,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
+import ren.pj.core.data.Category
 import ren.pj.core.data.PurchaseEntity
 import ren.pj.create.data.CreateRepository
 import ren.pj.create.mvi.CreateActions
@@ -51,7 +52,7 @@ class CreateViewModel @Inject constructor(
             try {
                 val purchase = PurchaseEntity(
                     purchaseName = state.purchaseName,
-                    category = state.category,
+                    category = Category.valueOf(state.category),
                     amount = state.amount.toDoubleOrNull() ?: 0.0,
                     currencyCode = state.currencyCode
                 )

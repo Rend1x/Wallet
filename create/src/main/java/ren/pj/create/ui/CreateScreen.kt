@@ -21,13 +21,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import ren.pj.core.data.Category
 import ren.pj.create.mvi.CreateActions
 import ren.pj.create.mvi.CreateSideEffect
+import ren.pj.create.ui.dialog.LargeDropdownMenu
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -59,6 +64,8 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateViewModel = 
 
 @Composable
 fun CreateScreenContent(state: CreateViewState, viewModel: CreateViewModel) {
+    var selectedIndex by remember { mutableStateOf(-1) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -73,12 +80,14 @@ fun CreateScreenContent(state: CreateViewState, viewModel: CreateViewModel) {
             },
             modifier = Modifier.fillMaxWidth()
         )
-        TextField(
-            value = state.category,
-            onValueChange = { viewModel.onEvent(CreateActions.EnteredCategory(it)) },
-            label = { Text("Категория") },
-            modifier = Modifier.fillMaxWidth()
+
+        LargeDropdownMenu(
+            label = "Sample",
+            items = Category.entries.map { it.name.lowercase() },
+            selectedIndex = selectedIndex,
+            onItemSelected = { index, _ -> selectedIndex = index },
         )
+
         TextField(
             value = state.amount,
             onValueChange = { viewModel.onEvent(CreateActions.EnteredAmount(it)) },

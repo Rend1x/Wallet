@@ -78,6 +78,7 @@ dependencies {
     implementation(project(":main"))
     implementation(project(":core"))
     implementation(project(":create"))
+    implementation(project(":notification"))
 }
 
 kapt {

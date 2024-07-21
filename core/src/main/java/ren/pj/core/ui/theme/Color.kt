@@ -1,4 +1,4 @@
-package ren.pj.wallet.ui.theme
+package ren.pj.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

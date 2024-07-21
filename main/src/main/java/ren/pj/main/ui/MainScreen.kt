@@ -119,7 +119,7 @@ fun PurchaseItem(purchase: PurchaseUi) {
         ) {
             Column {
                 Text(text = purchase.name, fontSize = 20.sp, color = Color.Black)
-                Text(text = purchase.category, fontSize = 14.sp, color = Color.Gray)
+                Text(text = purchase.category.name, fontSize = 14.sp, color = Color.Gray)
             }
             Text(text = "$${purchase.price}", fontSize = 20.sp, color = Color.Black)
         }

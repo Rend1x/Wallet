@@ -9,6 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ren.pj.core.data.AppDatabase
 import ren.pj.core.data.PurchaseDao
+import ren.pj.core.data.migaration.MIGRATION_1_2
 import javax.inject.Singleton
 
 @Module
@@ -19,7 +20,7 @@ class CoreDatabaseModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "purchase_database")
-            .fallbackToDestructiveMigration()
+            .addMigrations(MIGRATION_1_2)
             .build()
     }
 

@@ -7,7 +7,12 @@ import androidx.room.PrimaryKey
 data class PurchaseEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val purchaseName: String,
-    val category: String,
+    val category: Category,
     val amount: Double,
-    val currencyCode: String = "EUR"
+    val currencyCode: String,
+    val createdDate: Long = System.currentTimeMillis()
 )
+
+enum class Category {
+    MEDICINE, FOOD, FUEL, SPORT, EVENTS, TRANSPORT, ENTERTAINMENT, UTILITIES, SHOPPING, TRAVEL, OTHER
+}
